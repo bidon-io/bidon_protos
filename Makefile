@@ -1,4 +1,3 @@
-# Build the docs for the proto3 definition.
 
 make_go:
 	mkdir -p generated/go && \
