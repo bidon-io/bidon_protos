@@ -4,9 +4,9 @@ package com.appodeal.galaxy.openrtb;
 
 import "com/iabtechlab/openrtb/v3/openrtb.proto";
 import "com/iabtechlab/adcom/v1/adcom.proto";
-import "google/protobuf/wrappers.proto";
+import "google/protobuf/any.proto";
 
-option java_package = "com.example.openrtb";
+option java_package = "com.appodeal.galaxy.openrtb";
 option java_multiple_files = true;
 
 // Extend OpenRTB 3.0 BidRequest and BidResponse messages if necessary
@@ -63,5 +63,5 @@ message Segment {
 
 // Define the AuctionService
 service AuctionService {
-  rpc GetAuction(OpenRTB) returns (OpenRTB);
+  rpc GetAuction(com.iabtechlab.openrtb.v3.Openrtb) returns (com.iabtechlab.openrtb.v3.Openrtb);
 }
