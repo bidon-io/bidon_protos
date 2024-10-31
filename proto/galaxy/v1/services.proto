@@ -5,15 +5,10 @@ package galaxy.v1;
 
 import "com/iabtechlab/openrtb/v3/openrtb.proto";
 
-message GetAuctionRequest {
-  optional com.iabtechlab.openrtb.v3.Openrtb openrtb_request = 1;
-}
-
-message GetAuctionResponse {
-  optional com.iabtechlab.openrtb.v3.Openrtb openrtb_response = 1;
-}
-
-// Define the AuctionService
-service AuctionService {
-  rpc GetAuction(GetAuctionRequest) returns (GetAuctionResponse);
+/**
+ * The BiddingService implements the OpenRTB 3.x protocol for real-time bidding.
+ * The BiddingService represents the intermediary of bidding chain, it could be an exchange or a bidder.
+ */
+service BiddingService {
+  rpc Bid(com.iabtechlab.openrtb.v3.Openrtb) returns (com.iabtechlab.openrtb.v3.Openrtb);
 }
