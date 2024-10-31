@@ -1,6 +1,6 @@
-[submodule "openrtb"]
-	path = openrtb
-	url = git@github.com:IABTechLab/openrtb-proto.git
 [submodule "adcom"]
 	path = adcom
 	url = git@github.com:IABTechLab/adcom-proto.git
+[submodule "openrtb"]
+	path = openrtb
+	url = git@github.com:IABTechLab/openrtb-proto.git
