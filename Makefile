@@ -10,4 +10,4 @@ clean:
 	rm -fr gen/*
 
 watch:
-	fswatch  -r ./ | xargs -n1 make make_go
+	fswatch  -r ./ | xargs -n1 make check

@@ -13,5 +13,7 @@ git submodule update --init --recursive
 To generate go code from proto files, run  
 
 ```bash
-make make_go
+make generate
 ```
+
+Check [buf.gen.yaml](buf.gen.yaml) for the configuration of the generation. 
