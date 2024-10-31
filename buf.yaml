@@ -1,12 +1,11 @@
 version: v2
 modules:
   - path: adcom/proto
-  - path: common/proto
-  - path: extensions
+  - path: openrtb/proto
+  - path: proto
 lint:
     use:
         - STANDARD
     ignore:
         - adcom/proto
-        - common/proto
-        - PACKAGE_DIRECTORY_MATCHES_PACKAGE
+        - openrtb/proto
