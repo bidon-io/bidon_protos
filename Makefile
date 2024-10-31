@@ -21,20 +21,12 @@ make_go:
 	  $(find common/proto -name "*.proto") \
 	  extensions/bidon.proto
 
+# Install buf as per https://docs.buf.build/installation
 check:
-	prototool lint
+	buf lint
 
 clean:
 	rm -fr generated/*
-
-docs:
-	docker run --rm \
-		-v ${PWD}/doc:/out \
-		-v ${PWD}/proto:/protos \
-		pseudomuto/protoc-gen-doc --doc_opt=markdown,README.md --proto_path=/protos \
-		common/proto/com/iabtechlab/openrtb/v3/request.proto \
-		common/proto/com/iabtechlab/openrtb/v3/response.proto \
-		common/proto/com/iabtechlab/openrtb/v3/openrtb.proto
 
 watch:
 	fswatch  -r ./ | xargs -n1 make make_go

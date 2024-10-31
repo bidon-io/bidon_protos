@@ -1,8 +1,10 @@
+
 syntax = "proto2";
 
-package com.appodeal.galaxy.openrtb;
+// buf:lint:ignore:PACKAGE_DIRECTORY_MATCH
+// buf:lint:ignore PACKAGE_VERSION_SUFFIX
+package galaxy.v1.bidon;
 
-import "com/iabtechlab/openrtb/v3/openrtb.proto";
 import "com/iabtechlab/adcom/v1/adcom.proto";
 import "google/protobuf/any.proto";
 
@@ -35,15 +37,25 @@ extend com.iabtechlab.adcom.v1.context.DistributionChannel.App {
   repeated string skadn = 5008;
 }
 
+message Segment {
+  optional string id = 1;
+  optional string uid = 2;
+  optional string ext = 3;
+}
+
+message BidonUser{
+  optional string idfa = 1;
+  optional string tracking_authorization_status = 2;
+  optional string idfv = 3;
+  optional string idg = 4;
+  optional google.protobuf.Any consent = 5;
+
+  repeated Segment segments = 6;
+}
+
 // Extend AdCOM 1.0 User object
 extend com.iabtechlab.adcom.v1.context.User {
-  optional string idfa = 5010;
-  optional string tracking_authorization_status = 5011;
-  optional string idfv = 5012;
-  optional string idg = 5013;
-  optional google.protobuf.Any consent = 5014;
-
-  repeated Segment segments = 5019;
+  optional BidonUser bidon = 501;
 }
 
 // Extend AdCOM 1.0 Regs object
@@ -52,16 +64,4 @@ extend com.iabtechlab.adcom.v1.context.Regs {
   optional string us_privacy = 5016;
   optional string eu_privacy = 5017;
   optional google.protobuf.Any iab = 5018;
-}
-
-// Define the Segment message
-message Segment {
-  optional string id = 1;
-  optional string uid = 2;
-  optional string ext = 3;
-}
-
-// Define the AuctionService
-service AuctionService {
-  rpc GetAuction(com.iabtechlab.openrtb.v3.Openrtb) returns (com.iabtechlab.openrtb.v3.Openrtb);
 }

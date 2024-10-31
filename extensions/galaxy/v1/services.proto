@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+// buf:lint:ignore:PACKAGE_DIRECTORY_MATCH
+package galaxy.v1;
+
+import "com/iabtechlab/openrtb/v3/openrtb.proto";
+
+message GetAuctionRequest {
+  optional com.iabtechlab.openrtb.v3.Openrtb openrtb_request = 2;
+}
+
+message GetAuctionResponse {
+  optional com.iabtechlab.openrtb.v3.Openrtb openrtb_response = 1;
+}
+
+// Define the AuctionService
+service AuctionService {
+  rpc GetAuction(GetAuctionRequest) returns (GetAuctionResponse);
+}
