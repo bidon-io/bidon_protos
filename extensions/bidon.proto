@@ -1,0 +1,74 @@
+syntax = "proto2";
+
+package com.example.openrtb;
+
+import "com/iabtechlab/openrtb/v3/openrtb.proto";
+import "com/iabtechlab/adcom/v1/adcom.proto";
+import "google/protobuf/wrappers.proto";
+
+option java_package = "com.example.openrtb";
+option java_multiple_files = true;
+
+// Extend OpenRTB 3.0 BidRequest message
+/*
+extend openrtb.BidRequest {
+  message BidonExtention {
+    ... // Add fields if necessary
+  }
+  optional BidonExtention bidon = 50001;
+}
+*/
+
+// Extend AdCOM 1.0 Context objects if necessary
+extend com.iabtechlab.adcom.v1.context.DistributionChannel.App {
+  optional string key = 5003;
+  optional string framework = 5004;
+  optional string framework_version = 5005;
+  optional string plugin_version = 5006;
+  optional string sdk_version = 5007;
+  repeated string skadn = 5008;
+}
+
+// Extend AdCOM 1.0 User object
+extend com.iabtechlab.adcom.v1.context.User {
+  optional string idfa = 5010;
+  optional string tracking_authorization_status = 5011;
+  optional string idfv = 5012;
+  optional string idg = 5013;
+  optional google.protobuf.Any consent = 5014;
+
+  // Add segments to User type
+  repeated Segment segments = 5019;
+}
+
+// Extend AdCOM 1.0 Regs object
+extend com.iabtechlab.adcom.v1.context.Regs {
+  optional bool gdpr = 5015;
+  optional string us_privacy = 5016;
+  optional string eu_privacy = 5017;
+  optional google.protobuf.Any iab = 5018;
+}
+
+// Define the Segment message
+message Segment {
+  optional string id = 1;
+  optional string uid = 2;
+  optional string ext = 3;
+}
+
+// Define the main AuctionRequest message
+message AuctionRequest {
+  optional openrtb.BidRequest bid_request = 1;
+  // Include additional fields if necessary
+}
+
+// Define the main AuctionResponse message
+message AuctionResponse {
+  optional openrtb.BidResponse bid_response = 1;
+  // Include additional fields if necessary
+}
+
+// Define the AuctionService
+service AuctionService {
+  rpc GetAuction(AuctionRequest) returns (AuctionResponse);
+}
