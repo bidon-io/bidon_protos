@@ -1,4 +1,3 @@
-
 syntax = "proto2";
 
 // buf:lint:ignore:PACKAGE_DIRECTORY_MATCH
@@ -27,14 +26,18 @@ extend openrtb.BidResponse {
 }
 */
 
-// Extend AdCOM 1.0 Context objects if necessary
-extend com.iabtechlab.adcom.v1.context.DistributionChannel.App {
+message BidonApp {
   optional string key = 1;
   optional string framework = 2;
   optional string framework_version = 3;
   optional string plugin_version = 4;
   optional string sdk_version = 5;
   repeated string skadn = 6;
+}
+
+// Extend AdCOM 1.0 Context objects if necessary
+extend com.iabtechlab.adcom.v1.context.DistributionChannel.App {
+  optional BidonApp bidon_app = 501;
 }
 
 message Segment {
@@ -55,13 +58,17 @@ message BidonUser{
 
 // Extend AdCOM 1.0 User object
 extend com.iabtechlab.adcom.v1.context.User {
-  optional BidonUser bidon = 1;
+  optional BidonUser bidon = 501;
 }
 
-// Extend AdCOM 1.0 Regs object
-extend com.iabtechlab.adcom.v1.context.Regs {
+message BidonRegs {
   optional bool gdpr = 1;
   optional string us_privacy = 2;
   optional string eu_privacy = 3;
   optional google.protobuf.Any iab = 4;
+}
+
+// Extend AdCOM 1.0 Regs object
+extend com.iabtechlab.adcom.v1.context.Regs {
+  optional BidonRegs bidon_regs = 501;
 }
