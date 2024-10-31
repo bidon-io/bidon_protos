@@ -26,7 +26,7 @@ check:
 	buf lint
 
 clean:
-	rm -fr generated/*
+	rm -fr gen/*
 
 watch:
 	fswatch  -r ./ | xargs -n1 make make_go
