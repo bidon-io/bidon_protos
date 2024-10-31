@@ -2,6 +2,8 @@
 
 This repository contains protobuf files describing APIs of Bidon server.
 
+Install buf as per https://docs.buf.build/installation. 
+
 Init submodules:
 
 ```bash
