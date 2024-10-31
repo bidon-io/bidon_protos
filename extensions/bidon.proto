@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-package com.example.openrtb;
+package com.appodeal.galaxy.openrtb;
 
 import "com/iabtechlab/openrtb/v3/openrtb.proto";
 import "com/iabtechlab/adcom/v1/adcom.proto";
@@ -9,13 +9,19 @@ import "google/protobuf/wrappers.proto";
 option java_package = "com.example.openrtb";
 option java_multiple_files = true;
 
-// Extend OpenRTB 3.0 BidRequest message
+// Extend OpenRTB 3.0 BidRequest and BidResponse messages if necessary
 /*
 extend openrtb.BidRequest {
-  message BidonExtention {
+  message BidonRequestExtention {
     ... // Add fields if necessary
   }
-  optional BidonExtention bidon = 50001;
+  optional BidonRequestExtention bidon = 5001;
+}
+extend openrtb.BidResponse {
+  message BidonResponseExtention {
+    ... // Add fields if necessary
+  }
+  optional BidonResponseExtention bidon = 5001;
 }
 */
 
@@ -37,7 +43,6 @@ extend com.iabtechlab.adcom.v1.context.User {
   optional string idg = 5013;
   optional google.protobuf.Any consent = 5014;
 
-  // Add segments to User type
   repeated Segment segments = 5019;
 }
 
@@ -56,19 +61,7 @@ message Segment {
   optional string ext = 3;
 }
 
-// Define the main AuctionRequest message
-message AuctionRequest {
-  optional openrtb.BidRequest bid_request = 1;
-  // Include additional fields if necessary
-}
-
-// Define the main AuctionResponse message
-message AuctionResponse {
-  optional openrtb.BidResponse bid_response = 1;
-  // Include additional fields if necessary
-}
-
 // Define the AuctionService
 service AuctionService {
-  rpc GetAuction(AuctionRequest) returns (AuctionResponse);
+  rpc GetAuction(OpenRTB) returns (OpenRTB);
 }
