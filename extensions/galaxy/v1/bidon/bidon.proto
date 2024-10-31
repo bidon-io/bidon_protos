@@ -29,12 +29,12 @@ extend openrtb.BidResponse {
 
 // Extend AdCOM 1.0 Context objects if necessary
 extend com.iabtechlab.adcom.v1.context.DistributionChannel.App {
-  optional string key = 5003;
-  optional string framework = 5004;
-  optional string framework_version = 5005;
-  optional string plugin_version = 5006;
-  optional string sdk_version = 5007;
-  repeated string skadn = 5008;
+  optional string key = 1;
+  optional string framework = 2;
+  optional string framework_version = 3;
+  optional string plugin_version = 4;
+  optional string sdk_version = 5;
+  repeated string skadn = 6;
 }
 
 message Segment {
@@ -55,13 +55,13 @@ message BidonUser{
 
 // Extend AdCOM 1.0 User object
 extend com.iabtechlab.adcom.v1.context.User {
-  optional BidonUser bidon = 501;
+  optional BidonUser bidon = 1;
 }
 
 // Extend AdCOM 1.0 Regs object
 extend com.iabtechlab.adcom.v1.context.Regs {
-  optional bool gdpr = 5015;
-  optional string us_privacy = 5016;
-  optional string eu_privacy = 5017;
-  optional google.protobuf.Any iab = 5018;
+  optional bool gdpr = 1;
+  optional string us_privacy = 2;
+  optional string eu_privacy = 3;
+  optional google.protobuf.Any iab = 4;
 }
