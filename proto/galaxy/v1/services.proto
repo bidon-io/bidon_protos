@@ -1,6 +1,5 @@
 syntax = "proto2";
 
-// buf:lint:ignore:PACKAGE_DIRECTORY_MATCH
 package galaxy.v1;
 
 import "com/iabtechlab/openrtb/v3/openrtb.proto";

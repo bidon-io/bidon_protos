@@ -7,24 +7,9 @@ package galaxy.v1.bidon;
 import "com/iabtechlab/adcom/v1/adcom.proto";
 import "google/protobuf/any.proto";
 
-option java_package = "com.appodeal.galaxy.openrtb";
+option java_package = "io.bidmachine.galaxy.openrtb";
 option java_multiple_files = true;
 
-// Extend OpenRTB 3.0 BidRequest and BidResponse messages if necessary
-/*
-extend openrtb.BidRequest {
-  message BidonRequestExtention {
-    ... // Add fields if necessary
-  }
-  optional BidonRequestExtention bidon = 5001;
-}
-extend openrtb.BidResponse {
-  message BidonResponseExtention {
-    ... // Add fields if necessary
-  }
-  optional BidonResponseExtention bidon = 5001;
-}
-*/
 
 message BidonApp {
   optional string key = 1;
@@ -46,7 +31,7 @@ message Segment {
   optional string ext = 3;
 }
 
-message BidonUser{
+message BidonUser {
   optional string idfa = 1;
   optional string tracking_authorization_status = 2;
   optional string idfv = 3;
