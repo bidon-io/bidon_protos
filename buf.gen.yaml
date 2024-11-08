@@ -18,6 +18,6 @@ plugins:
       - Mcom/iabtechlab/adcom/v1/adcom.proto=appodeal.com/galaxy/protos/adcom
       - Mgalaxy/v1/bidon/bidon.proto=appodeal.com/galaxy/protos/extensions
       - Mgalaxy/v1/services.proto=appodeal.com/galaxy/protos
-      - Mgalaxy/v1/context.proto=appodeal.com/galaxy/protos
+      - Mgalaxy/v1/context/context.proto=appodeal.com/galaxy/protos/context
   - remote: buf.build/community/neoeinstein-prost:v0.4.0
     out: gen/rust

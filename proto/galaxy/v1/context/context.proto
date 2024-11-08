@@ -1,7 +1,8 @@
 syntax = "proto2";
 
 // buf:lint:ignore:PACKAGE_DIRECTORY_MATCH
-package galaxy.v1;
+// buf:lint:ignore PACKAGE_VERSION_SUFFIX
+package galaxy.v1.context;
 
 import "com/iabtechlab/adcom/v1/context/context.proto";
 
