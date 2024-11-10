@@ -36,7 +36,7 @@ message BidonUser {
   optional string tracking_authorization_status = 2;
   optional string idfv = 3;
   optional string idg = 4;
-  optional google.protobuf.Any consent = 5;
+  optional string consent = 5;
 
   repeated Segment segments = 6;
 }
