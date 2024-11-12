@@ -47,10 +47,9 @@ extend com.iabtechlab.adcom.v1.context.User {
 }
 
 message BidonRegs {
-  optional bool gdpr = 1;
   optional string us_privacy = 2;
   optional string eu_privacy = 3;
-  optional google.protobuf.Any iab = 4;
+  optional string iab = 4;
 }
 
 // Extend AdCOM 1.0 Regs object
