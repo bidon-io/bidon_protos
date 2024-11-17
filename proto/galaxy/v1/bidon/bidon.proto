@@ -5,7 +5,7 @@ syntax = "proto2";
 package galaxy.v1.bidon;
 
 import "com/iabtechlab/adcom/v1/adcom.proto";
-import "google/protobuf/any.proto";
+import "com/iabtechlab/openrtb/v3/request.proto";
 
 option java_package = "io.bidmachine.galaxy.openrtb";
 option java_multiple_files = true;
@@ -55,4 +55,102 @@ message BidonRegs {
 // Extend AdCOM 1.0 Regs object
 extend com.iabtechlab.adcom.v1.context.Regs {
   optional BidonRegs bidon_regs = 501;
+}
+
+message BidonSession {
+  // Unique identifier for the session
+  optional string id = 1;
+  //  Timestamp of the session launch
+  optional int64 launch_ts = 2;
+  //  Monotonic timestamp of the session launch
+  optional int64 launch_monotonic_ts = 3;
+  //  Timestamp of the session start
+  optional int64 start_ts = 4;
+  //  Monotonic timestamp of the session start
+  optional int64 start_monotonic_ts = 5;
+  //  Current timestamp of the session
+  optional int64 ts = 6;
+  //  Current monotonic timestamp of the session
+  optional int64 monotonic_ts = 7;
+  //  Timestamps when memory warnings occurred
+  repeated int64 memory_warnings_ts = 8;
+  //  Monotonic timestamps when memory warnings occurred
+  repeated int64 memory_warnings_monotonic_ts = 9;
+  //  Amount of RAM used
+  optional int32 ram_used = 10;
+  //  Total size of RAM
+  optional int32 ram_size = 11;
+  //  Free storage space available
+  optional int32 storage_free = 12;
+  //  Used storage space
+  optional int32 storage_used = 13;
+  //  Battery level percentage
+  optional int32 battery = 14;
+  //  CPU usage percentage
+  optional int32 cpu_usage = 15;
+}
+
+extend com.iabtechlab.openrtb.v3.Request {
+  optional BidonSession session = 501;
+}
+
+message BidonAdObject {
+  optional string auction_id = 1;
+  optional string auction_key = 2;
+  optional int64 auction_configuration_id = 3;
+  optional string auction_configuration_uid = 4;
+  optional Orientation orientation = 5;
+  map<string, Demand> demands = 6;
+  optional BannerAd banner = 7;
+  optional string interstitial = 8;
+  optional string rewarded = 9;
+}
+
+// buf:lint:ignore ENUM_VALUE_PREFIX
+enum Orientation {
+  ORIENTATION_UNSPECIFIED = 0;
+  PORTRAIT = 1;
+  LANDSCAPE = 2;
+}
+
+message Demand {
+  optional string token = 1;
+  optional Status status = 2;
+  optional int64 token_finish_ts = 3;
+  optional int64 token_start_ts = 4;
+}
+
+// buf:lint:ignore ENUM_VALUE_PREFIX
+enum Status {
+  STATUS_UNSPECIFIED= 0;
+  SUCCESS = 1;
+  FAIL = 2;
+  PENDING = 3;
+}
+
+message BannerAd {
+  optional AdFormat format = 1;
+}
+
+// buf:lint:ignore ENUM_VALUE_PREFIX
+enum AdFormat {
+  FORMAT_UNSPECIFIED = 0;
+  BANNER = 1;
+  LEADERBOARD = 2;
+  MREC = 3;
+  ADAPTIVE = 4;
+}
+
+message AdapterEntry {
+  optional string key = 1; // Adapter name (e.g., "property1", "property2")
+  optional Adapter value = 2;
+}
+
+message Adapter {
+  optional string version = 1;
+  optional string sdk_version = 2;
+}
+
+extend com.iabtechlab.openrtb.v3.Item {
+  optional BidonAdObject bidon_ad_object = 501;
 }
