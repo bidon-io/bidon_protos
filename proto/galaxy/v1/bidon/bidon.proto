@@ -61,21 +61,21 @@ message BidonSession {
   // Unique identifier for the session
   optional string id = 1;
   //  Timestamp of the session launch
-  optional int64 launch_ts = 2;
+  optional int32 launch_ts = 2;
   //  Monotonic timestamp of the session launch
-  optional int64 launch_monotonic_ts = 3;
+  optional int32 launch_monotonic_ts = 3;
   //  Timestamp of the session start
-  optional int64 start_ts = 4;
+  optional int32 start_ts = 4;
   //  Monotonic timestamp of the session start
-  optional int64 start_monotonic_ts = 5;
+  optional int32 start_monotonic_ts = 5;
   //  Current timestamp of the session
-  optional int64 ts = 6;
+  optional int32 ts = 6;
   //  Current monotonic timestamp of the session
-  optional int64 monotonic_ts = 7;
+  optional int32 monotonic_ts = 7;
   //  Timestamps when memory warnings occurred
-  repeated int64 memory_warnings_ts = 8;
+  repeated int32 memory_warnings_ts = 8;
   //  Monotonic timestamps when memory warnings occurred
-  repeated int64 memory_warnings_monotonic_ts = 9;
+  repeated int32 memory_warnings_monotonic_ts = 9;
   //  Amount of RAM used
   optional int32 ram_used = 10;
   //  Total size of RAM
@@ -85,13 +85,13 @@ message BidonSession {
   //  Used storage space
   optional int32 storage_used = 13;
   //  Battery level percentage
-  optional int32 battery = 14;
+  optional double battery = 14;
   //  CPU usage percentage
-  optional int32 cpu_usage = 15;
+  optional double cpu_usage = 15;
 }
 
 extend com.iabtechlab.openrtb.v3.Request {
-  optional BidonSession session = 501;
+  optional BidonSession bidon_session = 501;
 }
 
 message BidonAdObject {
@@ -115,17 +115,9 @@ enum Orientation {
 
 message Demand {
   optional string token = 1;
-  optional Status status = 2;
+  optional string status = 2;
   optional int64 token_finish_ts = 3;
   optional int64 token_start_ts = 4;
-}
-
-// buf:lint:ignore ENUM_VALUE_PREFIX
-enum Status {
-  STATUS_UNSPECIFIED= 0;
-  SUCCESS = 1;
-  FAIL = 2;
-  PENDING = 3;
 }
 
 message BannerAd {
