@@ -7,17 +7,17 @@ plugins:
     out: gen/go
     opt:
       - paths=source_relative
-      - Mcom/iabtechlab/openrtb/v3/enums.proto=appodeal.com/galaxy/protos/openrtb
-      - Mcom/iabtechlab/openrtb/v3/request.proto=appodeal.com/galaxy/protos/openrtb
-      - Mcom/iabtechlab/openrtb/v3/response.proto=appodeal.com/galaxy/protos/openrtb
-      - Mcom/iabtechlab/openrtb/v3/openrtb.proto=appodeal.com/galaxy/protos/openrtb
-      - Mcom/iabtechlab/adcom/v1/enums/enums.proto=appodeal.com/galaxy/protos/adcom/enums
-      - Mcom/iabtechlab/adcom/v1/media/media.proto=appodeal.com/galaxy/protos/adcom/media
-      - Mcom/iabtechlab/adcom/v1/placement/placement.proto=appodeal.com/galaxy/protos/adcom/placement
-      - Mcom/iabtechlab/adcom/v1/context/context.proto=appodeal.com/galaxy/protos/adcom/context
-      - Mcom/iabtechlab/adcom/v1/adcom.proto=appodeal.com/galaxy/protos/adcom
-      - Mgalaxy/v1/bidon/bidon.proto=appodeal.com/galaxy/protos/extensions
-      - Mgalaxy/v1/services.proto=appodeal.com/galaxy/protos
-      - Mgalaxy/v1/context/context.proto=appodeal.com/galaxy/protos/context
+      - Mcom/iabtechlab/openrtb/v3/enums.proto=appodeal.com/bidon/protos/openrtb
+      - Mcom/iabtechlab/openrtb/v3/request.proto=appodeal.com/bidon/protos/openrtb
+      - Mcom/iabtechlab/openrtb/v3/response.proto=appodeal.com/bidon/protos/openrtb
+      - Mcom/iabtechlab/openrtb/v3/openrtb.proto=appodeal.com/bidon/protos/openrtb
+      - Mcom/iabtechlab/adcom/v1/enums/enums.proto=appodeal.com/bidon/protos/adcom/enums
+      - Mcom/iabtechlab/adcom/v1/media/media.proto=appodeal.com/bidon/protos/adcom/media
+      - Mcom/iabtechlab/adcom/v1/placement/placement.proto=appodeal.com/bidon/protos/adcom/placement
+      - Mcom/iabtechlab/adcom/v1/context/context.proto=appodeal.com/bidon/protos/adcom/context
+      - Mcom/iabtechlab/adcom/v1/adcom.proto=appodeal.com/bidon/protos/adcom
+      - Mbidon/v1/mediation/mediation.proto=appodeal.com/bidon/protos/extensions
+      - Mbidon/v1/services.proto=appodeal.com/bidon/protos
+      - Mbidon/v1/context/context.proto=appodeal.com/bidon/protos/context
   - remote: buf.build/community/neoeinstein-prost:v0.4.0
     out: gen/rust

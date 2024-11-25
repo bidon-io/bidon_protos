@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-package galaxy.v1;
+package bidon.v1;
 
 import "com/iabtechlab/openrtb/v3/openrtb.proto";
 

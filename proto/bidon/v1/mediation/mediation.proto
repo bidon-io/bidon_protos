@@ -2,28 +2,28 @@ syntax = "proto2";
 
 // buf:lint:ignore:PACKAGE_DIRECTORY_MATCH
 // buf:lint:ignore PACKAGE_VERSION_SUFFIX
-package galaxy.v1.bidon;
+package bidon.v1.mediation;
 
 import "com/iabtechlab/adcom/v1/adcom.proto";
 import "com/iabtechlab/openrtb/v3/request.proto";
 
-option java_package = "io.bidmachine.galaxy.openrtb";
+option java_package = "io.bidmachine.bidon.openrtb";
 option java_multiple_files = true;
 
 
-message BidonApp {
+message MediationApp {
   optional string key = 1;
   optional string framework = 2;
   optional string framework_version = 3;
   optional string plugin_version = 4;
   optional string sdk_version = 5;
   repeated string skadn = 6;
-  optional string bidon_version = 7; // set from http header
+  optional string mediation_version = 7; // set from http header
 }
 
 // Extend AdCOM 1.0 Context objects if necessary
 extend com.iabtechlab.adcom.v1.context.DistributionChannel.App {
-  optional BidonApp bidon_app = 501;
+  optional MediationApp mediation_app = 501;
 }
 
 message Segment {
@@ -32,7 +32,7 @@ message Segment {
   optional string ext = 3;
 }
 
-message BidonUser {
+message MediationUser {
   optional string idfa = 1;
   optional string tracking_authorization_status = 2;
   optional string idfv = 3;
@@ -44,10 +44,10 @@ message BidonUser {
 
 // Extend AdCOM 1.0 User object
 extend com.iabtechlab.adcom.v1.context.User {
-  optional BidonUser bidon = 501;
+  optional MediationUser mediation_user = 501;
 }
 
-message BidonRegs {
+message MediationRegs {
   optional string us_privacy = 2;
   optional string eu_privacy = 3;
   optional string iab = 4;
@@ -55,10 +55,10 @@ message BidonRegs {
 
 // Extend AdCOM 1.0 Regs object
 extend com.iabtechlab.adcom.v1.context.Regs {
-  optional BidonRegs bidon_regs = 501;
+  optional MediationRegs mediation_regs = 501;
 }
 
-message BidonSession {
+message MediationSession {
   // Unique identifier for the session
   optional string id = 1;
   //  Timestamp of the session launch
@@ -92,10 +92,10 @@ message BidonSession {
 }
 
 extend com.iabtechlab.openrtb.v3.Request {
-  optional BidonSession bidon_session = 501;
+  optional MediationSession mediation_session = 501;
 }
 
-message BidonAdObject {
+message MediationAdObject {
   optional string auction_id = 1;
   optional string auction_key = 2;
   optional int64 auction_configuration_id = 3;
@@ -145,5 +145,5 @@ message Adapter {
 }
 
 extend com.iabtechlab.openrtb.v3.Item {
-  optional BidonAdObject bidon_ad_object = 501;
+  optional MediationAdObject mediation_ad_object = 501;
 }
