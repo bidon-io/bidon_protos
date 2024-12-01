@@ -6,8 +6,10 @@ import "com/iabtechlab/openrtb/v3/openrtb.proto";
 
 /**
  * The BiddingService implements the OpenRTB 3.x protocol for real-time bidding.
- * The BiddingService represents the intermediary of bidding chain, it could be an exchange or a bidder.
+ * The BiddingService represents the intermediary of bidding chain, it could be
+ * an exchange or a bidder.
  */
 service BiddingService {
-  rpc Bid(com.iabtechlab.openrtb.v3.Openrtb) returns (com.iabtechlab.openrtb.v3.Openrtb);
+  rpc Bid(com.iabtechlab.openrtb.v3.Openrtb)
+      returns (com.iabtechlab.openrtb.v3.Openrtb);
 }
