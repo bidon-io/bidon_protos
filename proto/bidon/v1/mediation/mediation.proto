@@ -18,7 +18,7 @@ message MediationApp {
   optional string plugin_version = 4;
   optional string sdk_version = 5;
   repeated string skadn = 6;
-  optional string mediation_version = 7; // set from http header
+  optional string bidon_version = 7; // set from http header
 }
 
 // Extend AdCOM 1.0 Context objects if necessary
