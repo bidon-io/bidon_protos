@@ -22,38 +22,7 @@ message AppExt {
 
 // Extend AdCOM 1.0 Context objects if necessary
 extend com.iabtechlab.adcom.v1.context.DistributionChannel.App {
-  optional AppExt app_mediation_ext = 101;
-}
-
-message Segment {
-  optional string id = 1;
-  optional string uid = 2;
-  optional string ext = 3;
-}
-
-message UserExt {
-  optional string idfa = 1;
-  optional string tracking_authorization_status = 2;
-  optional string idfv = 3;
-  optional string idg = 4;
-
-  repeated Segment segments = 6;
-}
-
-// Extend AdCOM 1.0 User object
-extend com.iabtechlab.adcom.v1.context.User {
-  optional UserExt user_mediation_ext = 101;
-}
-
-message RegsExt {
-  optional string us_privacy = 2;
-  optional string eu_privacy = 3;
-  optional string iab = 4;
-}
-
-// Extend AdCOM 1.0 Regs object
-extend com.iabtechlab.adcom.v1.context.Regs {
-  optional RegsExt regs_mediation_ext = 101;
+  optional AppExt app_ext = 101;
 }
 
 message Session {
@@ -89,11 +58,43 @@ message Session {
   optional double cpu_usage = 15;
 }
 
-extend com.iabtechlab.openrtb.v3.Request {
-  optional Session mediation_session = 101;
+// Extend AdCOM 1.0 Device object
+extend com.iabtechlab.adcom.v1.context.Device {
+  optional Session session = 101;
 }
 
-message Placement {
+message Segment {
+  optional string id = 1;
+  optional string uid = 2;
+  optional string ext = 3;
+}
+
+message UserExt {
+  optional string idfa = 1;
+  optional string tracking_authorization_status = 2;
+  optional string idfv = 3;
+  optional string idg = 4;
+
+  repeated Segment segments = 6;
+}
+
+// Extend AdCOM 1.0 User object
+extend com.iabtechlab.adcom.v1.context.User {
+  optional UserExt user_ext = 101;
+}
+
+message RegsExt {
+  optional string us_privacy = 2;
+  optional string eu_privacy = 3;
+  optional string iab = 4;
+}
+
+// Extend AdCOM 1.0 Regs object
+extend com.iabtechlab.adcom.v1.context.Regs {
+  optional RegsExt regs_ext = 101;
+}
+
+message PlacementExt {
   optional string auction_id = 1;
   optional string auction_key = 2;
   optional int64 auction_configuration_id = 3;
@@ -119,7 +120,7 @@ message Demand {
   optional int64 token_start_ts = 4;
 }
 
-message BannerAd { optional AdFormat format = 1; }
+message BannerAd {optional AdFormat format = 1;}
 
 // buf:lint:ignore ENUM_VALUE_PREFIX
 enum AdFormat {
@@ -141,5 +142,5 @@ message SdkAdapter {
 }
 
 extend com.iabtechlab.openrtb.v3.Item {
-  optional Placement mediation_placement = 101;
+  optional PlacementExt placement_ext = 101;
 }
