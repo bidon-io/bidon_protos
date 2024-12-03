@@ -10,7 +10,7 @@ import "com/iabtechlab/openrtb/v3/request.proto";
 option java_package = "io.bidmachine.bidon.openrtb";
 option java_multiple_files = true;
 
-message MediationApp {
+message AppExt {
   optional string key = 1;
   optional string framework = 2;
   optional string framework_version = 3;
@@ -22,7 +22,7 @@ message MediationApp {
 
 // Extend AdCOM 1.0 Context objects if necessary
 extend com.iabtechlab.adcom.v1.context.DistributionChannel.App {
-  optional MediationApp mediation_app = 501;
+  optional AppExt app_mediation_ext = 101;
 }
 
 message Segment {
@@ -31,7 +31,7 @@ message Segment {
   optional string ext = 3;
 }
 
-message MediationUser {
+message UserExt {
   optional string idfa = 1;
   optional string tracking_authorization_status = 2;
   optional string idfv = 3;
@@ -43,10 +43,10 @@ message MediationUser {
 
 // Extend AdCOM 1.0 User object
 extend com.iabtechlab.adcom.v1.context.User {
-  optional MediationUser mediation_user = 501;
+  optional UserExt user_mediation_ext = 101;
 }
 
-message MediationRegs {
+message RegsExt {
   optional string us_privacy = 2;
   optional string eu_privacy = 3;
   optional string iab = 4;
@@ -54,10 +54,10 @@ message MediationRegs {
 
 // Extend AdCOM 1.0 Regs object
 extend com.iabtechlab.adcom.v1.context.Regs {
-  optional MediationRegs mediation_regs = 501;
+  optional RegsExt regs_mediation_ext = 101;
 }
 
-message MediationSession {
+message Session {
   // Unique identifier for the session
   optional string id = 1;
   //  Timestamp of the session launch
@@ -91,10 +91,10 @@ message MediationSession {
 }
 
 extend com.iabtechlab.openrtb.v3.Request {
-  optional MediationSession mediation_session = 501;
+  optional Session mediation_session = 101;
 }
 
-message MediationAdObject {
+message Placement {
   optional string auction_id = 1;
   optional string auction_key = 2;
   optional int64 auction_configuration_id = 3;
@@ -133,14 +133,14 @@ enum AdFormat {
 
 message AdapterEntry {
   optional string key = 1; // Adapter name (e.g., "property1", "property2")
-  optional Adapter value = 2;
+  optional SdkAdapter value = 2;
 }
 
-message Adapter {
+message SdkAdapter {
   optional string version = 1;
   optional string sdk_version = 2;
 }
 
 extend com.iabtechlab.openrtb.v3.Item {
-  optional MediationAdObject mediation_ad_object = 501;
+  optional Placement mediation_placement = 101;
 }
