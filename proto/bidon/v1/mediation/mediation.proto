@@ -25,7 +25,7 @@ extend com.iabtechlab.adcom.v1.context.DistributionChannel.App {
   optional AppExt app_ext = 101;
 }
 
-message Session {
+message SessionExt {
   // Unique identifier for the session
   optional string id = 1;
   //  Timestamp of the session launch
@@ -60,7 +60,7 @@ message Session {
 
 // Extend AdCOM 1.0 Device object
 extend com.iabtechlab.adcom.v1.context.Device {
-  optional Session session = 101;
+  optional SessionExt session_ext = 101;
 }
 
 message Segment {
