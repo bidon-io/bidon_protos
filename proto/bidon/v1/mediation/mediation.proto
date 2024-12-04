@@ -5,7 +5,6 @@ syntax = "proto2";
 package bidon.v1.mediation;
 
 import "com/iabtechlab/adcom/v1/adcom.proto";
-import "com/iabtechlab/openrtb/v3/request.proto";
 
 option java_package = "io.bidmachine.bidon.openrtb";
 option java_multiple_files = true;
@@ -106,6 +105,10 @@ message PlacementExt {
   optional string rewarded = 9;
 }
 
+extend com.iabtechlab.adcom.v1.placement.Placement {
+  optional PlacementExt placement_ext = 101;
+}
+
 // buf:lint:ignore ENUM_VALUE_PREFIX
 enum Orientation {
   ORIENTATION_UNSPECIFIED = 0;
@@ -120,7 +123,9 @@ message Demand {
   optional int64 token_start_ts = 4;
 }
 
-message BannerAd {optional AdFormat format = 1;}
+message BannerAd {
+  optional AdFormat format = 1;
+}
 
 // buf:lint:ignore ENUM_VALUE_PREFIX
 enum AdFormat {
@@ -139,8 +144,4 @@ message AdapterEntry {
 message SdkAdapter {
   optional string version = 1;
   optional string sdk_version = 2;
-}
-
-extend com.iabtechlab.openrtb.v3.Item {
-  optional PlacementExt placement_ext = 101;
 }
