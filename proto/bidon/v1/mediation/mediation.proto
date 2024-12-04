@@ -6,8 +6,8 @@ package bidon.v1.mediation;
 
 import "com/iabtechlab/adcom/v1/adcom.proto";
 
-option java_package = "io.bidmachine.bidon.openrtb";
 option java_multiple_files = true;
+option java_package = "io.bidmachine.bidon.openrtb";
 
 message AppExt {
   optional string key = 1;

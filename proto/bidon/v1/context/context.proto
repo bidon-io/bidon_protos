@@ -18,8 +18,7 @@ import "com/iabtechlab/adcom/v1/context/context.proto";
 //  e., Site, App, or Dooh), User, Device, Regs, Restrictions, and any objects
 //  subordinate to these as specified by AdCOM.
 message Context {
-  optional com.iabtechlab.adcom.v1.context.DistributionChannel
-      distribution_channel = 1;
+  optional com.iabtechlab.adcom.v1.context.DistributionChannel distribution_channel = 1;
 
   optional com.iabtechlab.adcom.v1.context.User user = 2;
 
