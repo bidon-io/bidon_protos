@@ -1,13 +1,9 @@
 syntax = "proto2";
 
-// buf:lint:ignore:PACKAGE_DIRECTORY_MATCH
 // buf:lint:ignore PACKAGE_VERSION_SUFFIX
-package bidon.v1.mediation;
+package org.bidon.proto.v1.mediation;
 
 import "com/iabtechlab/adcom/v1/adcom.proto";
-
-option java_multiple_files = true;
-option java_package = "io.bidmachine.bidon.openrtb";
 
 message AppExt {
   optional string key = 1;
