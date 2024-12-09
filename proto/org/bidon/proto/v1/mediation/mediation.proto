@@ -1,16 +1,11 @@
 syntax = "proto2";
 
-// buf:lint:ignore:PACKAGE_DIRECTORY_MATCH
 // buf:lint:ignore PACKAGE_VERSION_SUFFIX
-package bidon.v1.mediation;
+package org.bidon.proto.v1.mediation;
 
 import "com/iabtechlab/adcom/v1/adcom.proto";
-import "com/iabtechlab/openrtb/v3/request.proto";
 
-option java_package = "io.bidmachine.bidon.openrtb";
-option java_multiple_files = true;
-
-message MediationApp {
+message AppExt {
   optional string key = 1;
   optional string framework = 2;
   optional string framework_version = 3;
@@ -22,42 +17,10 @@ message MediationApp {
 
 // Extend AdCOM 1.0 Context objects if necessary
 extend com.iabtechlab.adcom.v1.context.DistributionChannel.App {
-  optional MediationApp mediation_app = 501;
+  optional AppExt app_ext = 101;
 }
 
-message Segment {
-  optional string id = 1;
-  optional string uid = 2;
-  optional string ext = 3;
-}
-
-message MediationUser {
-  optional string idfa = 1;
-  optional string tracking_authorization_status = 2;
-  optional string idfv = 3;
-  optional string idg = 4;
-  optional string consent = 5;
-
-  repeated Segment segments = 6;
-}
-
-// Extend AdCOM 1.0 User object
-extend com.iabtechlab.adcom.v1.context.User {
-  optional MediationUser mediation_user = 501;
-}
-
-message MediationRegs {
-  optional string us_privacy = 2;
-  optional string eu_privacy = 3;
-  optional string iab = 4;
-}
-
-// Extend AdCOM 1.0 Regs object
-extend com.iabtechlab.adcom.v1.context.Regs {
-  optional MediationRegs mediation_regs = 501;
-}
-
-message MediationSession {
+message DeviceExt {
   // Unique identifier for the session
   optional string id = 1;
   //  Timestamp of the session launch
@@ -90,11 +53,43 @@ message MediationSession {
   optional double cpu_usage = 15;
 }
 
-extend com.iabtechlab.openrtb.v3.Request {
-  optional MediationSession mediation_session = 501;
+// Extend AdCOM 1.0 Device object
+extend com.iabtechlab.adcom.v1.context.Device {
+  optional DeviceExt device_ext = 101;
 }
 
-message MediationAdObject {
+message Segment {
+  optional string id = 1;
+  optional string uid = 2;
+  optional string ext = 3;
+}
+
+message UserExt {
+  optional string idfa = 1;
+  optional string tracking_authorization_status = 2;
+  optional string idfv = 3;
+  optional string idg = 4;
+
+  repeated Segment segments = 6;
+}
+
+// Extend AdCOM 1.0 User object
+extend com.iabtechlab.adcom.v1.context.User {
+  optional UserExt user_ext = 101;
+}
+
+message RegsExt {
+  optional string us_privacy = 2;
+  optional string eu_privacy = 3;
+  optional string iab = 4;
+}
+
+// Extend AdCOM 1.0 Regs object
+extend com.iabtechlab.adcom.v1.context.Regs {
+  optional RegsExt regs_ext = 101;
+}
+
+message PlacementExt {
   optional string auction_id = 1;
   optional string auction_key = 2;
   optional int64 auction_configuration_id = 3;
@@ -104,6 +99,10 @@ message MediationAdObject {
   optional BannerAd banner = 7;
   optional string interstitial = 8;
   optional string rewarded = 9;
+}
+
+extend com.iabtechlab.adcom.v1.placement.Placement {
+  optional PlacementExt placement_ext = 101;
 }
 
 // buf:lint:ignore ENUM_VALUE_PREFIX
@@ -120,7 +119,9 @@ message Demand {
   optional int64 token_start_ts = 4;
 }
 
-message BannerAd { optional AdFormat format = 1; }
+message BannerAd {
+  optional AdFormat format = 1;
+}
 
 // buf:lint:ignore ENUM_VALUE_PREFIX
 enum AdFormat {
@@ -133,14 +134,10 @@ enum AdFormat {
 
 message AdapterEntry {
   optional string key = 1; // Adapter name (e.g., "property1", "property2")
-  optional Adapter value = 2;
+  optional SdkAdapter value = 2;
 }
 
-message Adapter {
+message SdkAdapter {
   optional string version = 1;
   optional string sdk_version = 2;
-}
-
-extend com.iabtechlab.openrtb.v3.Item {
-  optional MediationAdObject mediation_ad_object = 501;
 }

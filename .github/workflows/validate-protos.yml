@@ -20,12 +20,12 @@ jobs:
         fetch-depth: 0
 
     - name: Set up buf
-      run: |
-        curl -sSL https://github.com/bufbuild/buf/releases/download/v1.47.0/buf-Linux-x86_64 -o /usr/local/bin/buf
-        chmod +x /usr/local/bin/buf
+      uses: bufbuild/buf-action@v1
+      with:
+        setup_only: 'true'
             
-    - name: protobuf file formatting
-      uses: project-echo/protobuf-format-check@v0.3
+    - name: Check Protobuf format
+      run: buf format --diff --exit-code --path proto/*
           
     - name: Validate Protobuf files
       run: buf lint

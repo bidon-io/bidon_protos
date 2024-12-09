@@ -1,14 +1,13 @@
 syntax = "proto2";
 
-// buf:lint:ignore:PACKAGE_DIRECTORY_MATCH
 // buf:lint:ignore PACKAGE_VERSION_SUFFIX
-package bidon.v1.context;
+package org.bidon.proto.v1.context;
 
 import "com/iabtechlab/adcom/v1/context/context.proto";
 
 // Context object for the bid request is stored in the context field of the
 // OpenRTB 3.0 BidRequest object. It's a container for AdCom v1.0 objects: User,
-// Device, Site, App, Regs, and other objects as definied in the AdCom v1.0
+// Device, Site, App, Regs, and other objects as defined in the AdCom v1.0
 // specification.
 //
 //  Layer-4 domain object structure that provides context for the items being
@@ -18,8 +17,7 @@ import "com/iabtechlab/adcom/v1/context/context.proto";
 //  e., Site, App, or Dooh), User, Device, Regs, Restrictions, and any objects
 //  subordinate to these as specified by AdCOM.
 message Context {
-  optional com.iabtechlab.adcom.v1.context.DistributionChannel
-      distribution_channel = 1;
+  optional com.iabtechlab.adcom.v1.context.DistributionChannel distribution_channel = 1;
 
   optional com.iabtechlab.adcom.v1.context.User user = 2;
 

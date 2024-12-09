@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-package bidon.v1;
+package org.bidon.proto.v1;
 
 import "com/iabtechlab/openrtb/v3/openrtb.proto";
 
@@ -10,6 +10,5 @@ import "com/iabtechlab/openrtb/v3/openrtb.proto";
  * an exchange or a bidder.
  */
 service BiddingService {
-  rpc Bid(com.iabtechlab.openrtb.v3.Openrtb)
-      returns (com.iabtechlab.openrtb.v3.Openrtb);
+  rpc Bid(com.iabtechlab.openrtb.v3.Openrtb) returns (com.iabtechlab.openrtb.v3.Openrtb);
 }
