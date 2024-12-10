@@ -4,6 +4,7 @@ syntax = "proto2";
 package org.bidon.proto.v1.mediation;
 
 import "com/iabtechlab/adcom/v1/adcom.proto";
+import "com/iabtechlab/openrtb/v3/response.proto";
 
 message AppExt {
   optional string key = 1;
@@ -140,4 +141,53 @@ message AdapterEntry {
 message SdkAdapter {
   optional string version = 1;
   optional string sdk_version = 2;
+}
+
+// Extensions for response.
+
+message BidExt {
+  // Type of bid associated with the ad unit
+  optional string bid_type = 1;
+
+  // Label for the ad unit
+  optional string label = 2;
+
+  // Additional properties for the ad unit
+  map<string, string> ext = 3;
+}
+
+// Extend OpenRTB Bid object
+extend com.iabtechlab.openrtb.v3.Bid {
+  optional BidExt bid_ext = 101;
+}
+
+message AuctionResponseExt {
+  // Unique identifier for the auction
+  optional string auction_id = 1;
+
+  // Configuration ID for the auction
+  optional int64 auction_configuration_id = 2;
+
+  // Unique identifier for the auction configuration
+  optional string auction_configuration_uid = 3;
+
+  // Represents the auction key
+  optional string token = 4;
+
+  // Price floor for the auction
+  optional double auction_pricefloor = 5;
+
+  // Timeout for the auction
+  optional int32 auction_timeout = 6;
+
+  // Indicates if external win notifications are enabled
+  optional bool external_win_notifications = 7;
+
+  // Segment for the auction
+  optional Segment segment = 8;
+}
+
+// Extend OpenRTB AuctionResponse object
+extend com.iabtechlab.openrtb.v3.Response {
+  optional AuctionResponseExt auction_response_ext = 101;
 }
