@@ -25,29 +25,29 @@ message DeviceExt {
   // Unique identifier for the session
   optional string id = 1;
   //  Timestamp of the session launch
-  optional int32 launch_ts = 2;
+  optional int64 launch_ts = 2;
   //  Monotonic timestamp of the session launch
-  optional int32 launch_monotonic_ts = 3;
+  optional int64 launch_monotonic_ts = 3;
   //  Timestamp of the session start
-  optional int32 start_ts = 4;
+  optional int64 start_ts = 4;
   //  Monotonic timestamp of the session start
-  optional int32 start_monotonic_ts = 5;
+  optional int64 start_monotonic_ts = 5;
   //  Current timestamp of the session
-  optional int32 ts = 6;
+  optional int64 ts = 6;
   //  Current monotonic timestamp of the session
-  optional int32 monotonic_ts = 7;
+  optional int64 monotonic_ts = 7;
   //  Timestamps when memory warnings occurred
-  repeated int32 memory_warnings_ts = 8;
+  repeated int64 memory_warnings_ts = 8;
   //  Monotonic timestamps when memory warnings occurred
-  repeated int32 memory_warnings_monotonic_ts = 9;
+  repeated int64 memory_warnings_monotonic_ts = 9;
   //  Amount of RAM used
-  optional int32 ram_used = 10;
+  optional int64 ram_used = 10;
   //  Total size of RAM
-  optional int32 ram_size = 11;
+  optional int64 ram_size = 11;
   //  Free storage space available
-  optional int32 storage_free = 12;
+  optional int64 storage_free = 12;
   //  Used storage space
-  optional int32 storage_used = 13;
+  optional int64 storage_used = 13;
   //  Battery level percentage
   optional double battery = 14;
   //  CPU usage percentage
