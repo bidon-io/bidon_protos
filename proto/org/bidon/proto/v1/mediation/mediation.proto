@@ -4,6 +4,7 @@ syntax = "proto2";
 package org.bidon.proto.v1.mediation;
 
 import "com/iabtechlab/adcom/v1/adcom.proto";
+import "com/iabtechlab/openrtb/v3/request.proto";
 import "com/iabtechlab/openrtb/v3/response.proto";
 
 message AppExt {
@@ -133,14 +134,27 @@ enum AdFormat {
   ADAPTIVE = 4;
 }
 
-message AdapterEntry {
-  optional string key = 1; // Adapter name (e.g., "property1", "property2")
-  optional SdkAdapter value = 2;
-}
-
 message SdkAdapter {
   optional string version = 1;
   optional string sdk_version = 2;
+}
+
+enum AdType {
+  AD_TYPE_UNSPECIFIED = 0;
+  AD_TYPE_BANNER = 1;
+  AD_TYPE_INTERSTITIAL = 2;
+  AD_TYPE_REWARDED = 3;
+}
+
+message RequestExt {
+  optional AdType ad_type = 1;
+  // key - adapter name (e.g., "property1", "property2")
+  map<string, SdkAdapter> adapters = 2;
+  optional string ext = 3;
+}
+
+extend com.iabtechlab.openrtb.v3.Request {
+  optional RequestExt request_ext = 101;
 }
 
 // Extensions for response.
