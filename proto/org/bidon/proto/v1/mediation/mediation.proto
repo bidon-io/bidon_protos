@@ -96,22 +96,11 @@ message PlacementExt {
   optional string auction_key = 2;
   optional int64 auction_configuration_id = 3;
   optional string auction_configuration_uid = 4;
-  optional Orientation orientation = 5;
-  map<string, Demand> demands = 6;
-  optional BannerAd banner = 7;
-  optional string interstitial = 8;
-  optional string rewarded = 9;
+  map<string, Demand> demands = 5;
 }
 
 extend com.iabtechlab.adcom.v1.placement.Placement {
   optional PlacementExt placement_ext = 101;
-}
-
-// buf:lint:ignore ENUM_VALUE_PREFIX
-enum Orientation {
-  ORIENTATION_UNSPECIFIED = 0;
-  PORTRAIT = 1;
-  LANDSCAPE = 2;
 }
 
 message Demand {
@@ -121,8 +110,11 @@ message Demand {
   optional int64 token_start_ts = 4;
 }
 
-message BannerAd {
-  optional AdFormat format = 1;
+// buf:lint:ignore ENUM_VALUE_PREFIX
+enum Orientation {
+  ORIENTATION_UNSPECIFIED = 0;
+  PORTRAIT = 1;
+  LANDSCAPE = 2;
 }
 
 // buf:lint:ignore ENUM_VALUE_PREFIX
@@ -132,6 +124,15 @@ enum AdFormat {
   LEADERBOARD = 2;
   MREC = 3;
   ADAPTIVE = 4;
+}
+
+message DisplayPlacementExt {
+  optional Orientation orientation = 1;
+  optional AdFormat format = 2;
+}
+
+extend com.iabtechlab.adcom.v1.placement.Placement.DisplayPlacement {
+  optional DisplayPlacementExt display_placement_ext = 101;
 }
 
 message SdkAdapter {
